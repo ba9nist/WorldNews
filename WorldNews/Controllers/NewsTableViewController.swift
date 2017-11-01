@@ -16,21 +16,41 @@ class NewsTableViewController: UITableViewController {
     var articles:[Article] = []
     let reuseIdentifier = "NewsTableViewCell"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    func loadArticles(){
         NewsApi.sharedInstance.getAricles(source: sourceToLoad) { (newArticles, error) in
             if(newArticles == nil){
                 return
             }
             print("data arrives")
             self.articles = newArticles!
+            self.newsTableView.refreshControl?.endRefreshing()
             self.newsTableView.reloadData()
+            
         };
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loadArticles()
         
         newsTableView.register(UINib(nibName: "NewsTableViewCell", bundle:nil), forCellReuseIdentifier: reuseIdentifier)
         newsTableView.tableFooterView = UIView()
         
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(NewsTableViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching data...")
+        newsTableView.refreshControl = refreshControl
+    }
+    
+    func refresh(_ refreshControl: UIRefreshControl) {
+         print("refresh")
+        newsTableView.refreshControl?.beginRefreshing()
+        loadArticles()
+       
     }
 
     override func didReceiveMemoryWarning() {

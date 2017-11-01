@@ -27,19 +27,17 @@ class NewsApi: NSObject {
     private override init(){super.init()}
 
     func getImage(url: String, completionHandler: @escaping (Image, String) -> ()){
-        let img = getImageFromCache(url: url);
-        
-        if(img != nil){
-            completionHandler(img!, url);
-            return;
+        guard let img = getImageFromCache(url: url) else{
+            Alamofire.request(url, method:.get).responseImage { (response) in
+                guard let image = response.result.value else { return }
+                let scaledImage = image.af_imageAspectScaled(toFit: self.size)
+                self.cache(image: scaledImage, url: url)
+                completionHandler(scaledImage, url)
+            }
+            return
         }
         
-        Alamofire.request(url, method:.get).responseImage { (response) in
-            guard let image = response.result.value else { return }
-            let scaledImage = image.af_imageAspectScaled(toFit: self.size)
-            self.cache(image: scaledImage, url: url)
-            completionHandler(scaledImage, url)
-        }
+        completionHandler(img, url)
     }
     
     func cache(image: Image, url: String){

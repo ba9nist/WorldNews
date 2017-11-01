@@ -12,9 +12,31 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
 
     @IBOutlet weak var sourcesTableView: UITableView!
     
+    @IBOutlet weak var placeholder: UILabel!
     let reuseIdentifier = "ArticleSourcesTableViewCell"
     
     var sources: [SourceObject] = []
+    
+    func checkPlaceholder(){
+        if(self.sources.count == 0){
+            self.placeholder.isHidden = false
+        }else{
+            self.placeholder.isHidden = true
+        }
+    }
+    
+    func loadData(){
+        checkPlaceholder()
+        NewsApi.sharedInstance.getSources { (newSources, error) in
+            if(newSources == nil){
+                print(error.debugDescription)
+            }
+            self.sources = newSources!
+            self.checkPlaceholder()
+            self.sourcesTableView.reloadData()
+            self.sourcesTableView.refreshControl?.endRefreshing()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +44,18 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         // Do any additional setup after loading the view.
         sourcesTableView.register(UINib(nibName: "ArticleSourcesTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         sourcesTableView.tableFooterView = UIView()
+        loadData()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(NewsTableViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching data...")
+        sourcesTableView.refreshControl = refreshControl
+    }
+    
+    func refresh(_ refreshControl: UIRefreshControl) {
+        sourcesTableView.refreshControl?.beginRefreshing()
+        loadData()
         
-        NewsApi.sharedInstance.getSources { (newSources, error) in
-            print("got result")
-            if(newSources == nil){
-                print(error.debugDescription)
-            }
-            self.sources = newSources!
-            self.sourcesTableView.reloadData()
-        }
     }
 
     override func didReceiveMemoryWarning() {
