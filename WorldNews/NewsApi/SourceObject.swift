@@ -11,13 +11,13 @@ import SwiftyJSON
 
 class SourceObject: NSObject{
     
-    var source: String?
-    var name: String?
-    var about: String?
-    var url: String?
-    var category: String?
-    var language: String?
-    var country: String?
+    var source: String!
+    var name: String!
+    var about: String!
+    var url: String!
+    var category: String!
+    var language: String!
+    var country: String!
     
     
     override init(){

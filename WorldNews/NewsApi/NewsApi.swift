@@ -26,19 +26,19 @@ class NewsApi: NSObject {
 
     private override init(){super.init()}
 
-    func getImage(url: String, completionHandler: @escaping (Image) -> ()){
+    func getImage(url: String, completionHandler: @escaping (Image, String) -> ()){
         let img = getImageFromCache(url: url);
         
         if(img != nil){
-            completionHandler(img!);
+            completionHandler(img!, url);
             return;
         }
         
         Alamofire.request(url, method:.get).responseImage { (response) in
             guard let image = response.result.value else { return }
-            let scaledImage = image.af_imageScaled(to: self.size)
+            let scaledImage = image.af_imageAspectScaled(toFit: self.size)
             self.cache(image: scaledImage, url: url)
-            completionHandler(scaledImage)
+            completionHandler(scaledImage, url)
         }
     }
     
@@ -52,47 +52,53 @@ class NewsApi: NSObject {
     
     
     
-    func getAricles(completionHandler: @escaping ([Article]?, Error?) -> ()){
-        let url = "https://newsapi.org/v1/articles?source=techcrunch&apiKey=37543c1f01b7455ba38401d4bfcd6688"
+    func getAricles(source: String?, completion: @escaping ([Article]?, Error?) -> ()){
+        var url: String = "https://newsapi.org/v1/articles?";
+        if (source == nil){
+//            let url = "https://newsapi.org/v1/articles?source=techcrunch&apiKey=37543c1f01b7455ba38401d4bfcd6688"
+            url += "source=techcrunch"
+        }else{
+            url += "source="+source!;
+        }
+        url += "&apiKey=37543c1f01b7455ba38401d4bfcd6688"
         Alamofire.request(url).validate()
         .responseJSON { (response) in
-            switch(response.result){
-            case .success:
-                var articles: [Article] = []
-                
-                let jsonResult = JSON(data: response.data!)
-                for article in (jsonResult["articles"].array)!{
-                    articles.append(Article(json: article))
-                }
-                completionHandler(articles,nil)
-                break
-            case .failure:
-                completionHandler(nil, response.result.error)
-                break
+            guard response.result.isSuccess else{
+                completion(nil, response.result.error)
+                return
             }
+            
+            var articles: [Article] = []
+            
+            let jsonResult = JSON(data: response.data!)
+            for article in (jsonResult["articles"].array)!{
+                articles.append(Article(json: article))
+            }
+            completion(articles,nil)
         }
     }
     
-//    func getAllSources(){
-//        print("getting all sources");
-//        let url = "https://newsapi.org/v1/sources"
-//        Alamofire.request(
-//            url,
-//            method: .get,
-//            parameters: nil)
-//            .validate()
-//            .responseJSON { (response) -> Void in
-//                guard response.result.isSuccess else {
-//                    //completion(nil, response.result.error)
-//                    return
-//                }
-//                
-//                var sources: [SourceObject] = []
-//                
-//                let jsonResult = JSON(data: response.data!)
-//                for source in (jsonResult["sources"].array)!{
-//                    sources.append(SourceObject(json: source))
-//                }
-//        }
-//    }
+    func getSources(completion: @escaping ([SourceObject]?, Error?)->()){
+        print("getting all sources");
+        let url = "https://newsapi.org/v1/sources"
+        Alamofire.request(
+            url,
+            method: .get,
+            parameters: nil)
+            .validate()
+            .responseJSON { (response) -> Void in
+                guard response.result.isSuccess else {
+                    completion(nil, response.result.error)
+                    return
+                }
+                
+                var sources: [SourceObject] = []
+                
+                let jsonResult = JSON(data: response.data!)
+                for source in (jsonResult["sources"].array)!{
+                    sources.append(SourceObject(json: source))
+                }
+                completion(sources, nil)
+        }
+    }
 }

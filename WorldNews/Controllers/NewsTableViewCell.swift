@@ -13,6 +13,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var articleDescription: UILabel!
     @IBOutlet weak var articleTitle: UILabel!
+    var url: String = ""
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,10 +26,21 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     func setupData(url: String, title: String, description: String){
-//        ApiTypes.sharedInstance.getImage(url: url, completionHandler: { (image) in
+        self.url = url
+        articleImage.image = nil
+//        NewsApi.sharedInstance.getImage(url: url, completionHandler: { (image) in
 //            self.articleImage.image = image
 //        })
-        self.articleImage.af_setImage(withURL: URL(string: url)!)
+        
+        NewsApi.sharedInstance.getImage(url: url) { (image, resultUrl) in
+            if(self.url == resultUrl){
+                self.articleImage.image = image
+            }else{
+                print ("late Image")
+            }
+        }
+        
+        //self.articleImage.af_setImage(withURL: URL(string: url)!)
         
         articleTitle.text = title
         articleDescription.text = description

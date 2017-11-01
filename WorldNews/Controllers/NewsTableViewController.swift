@@ -12,14 +12,14 @@ import Alamofire
 class NewsTableViewController: UITableViewController {
     @IBOutlet weak var newsTableView: UITableView!
     
+    var sourceToLoad: String = ""
     var articles:[Article] = []
-    
     let reuseIdentifier = "NewsTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NewsApi.sharedInstance.getAricles { (newArticles, error) in
+        NewsApi.sharedInstance.getAricles(source: sourceToLoad) { (newArticles, error) in
             if(newArticles == nil){
                 return
             }

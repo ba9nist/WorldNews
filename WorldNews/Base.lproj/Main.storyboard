@@ -12,7 +12,7 @@
         <!--News-->
         <scene sceneID="VL4-qV-KRG">
             <objects>
-                <tableViewController title="News" id="gws-ZK-ECL" customClass="NewsTableViewController" customModule="WorldNews" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NewsTableViewController" title="News" id="gws-ZK-ECL" customClass="NewsTableViewController" customModule="WorldNews" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="F9w-TJ-Ok7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,45 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhr-o4-Fh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="583" y="36"/>
+            <point key="canvasLocation" x="1380" y="36"/>
+        </scene>
+        <!--ArticleSources-->
+        <scene sceneID="I7b-LW-cGD">
+            <objects>
+                <viewController id="Wl4-Rh-Z0J" customClass="ArticleSourcesViewController" customModule="WorldNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J7P-A1-dRc"/>
+                        <viewControllerLayoutGuide type="bottom" id="U3u-u6-rhh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bdN-iD-hqx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RtA-1g-HCy">
+                                <rect key="frame" x="5" y="0.0" width="365" height="662"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Wl4-Rh-Z0J" id="6Hh-tf-55C"/>
+                                    <outlet property="delegate" destination="Wl4-Rh-Z0J" id="09f-js-duY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RtA-1g-HCy" firstAttribute="top" secondItem="bdN-iD-hqx" secondAttribute="top" id="ByA-Vm-aDI"/>
+                            <constraint firstAttribute="trailing" secondItem="RtA-1g-HCy" secondAttribute="trailing" constant="5" id="VL6-kM-oTh"/>
+                            <constraint firstItem="RtA-1g-HCy" firstAttribute="leading" secondItem="bdN-iD-hqx" secondAttribute="leading" constant="5" id="WrU-1d-9Pl"/>
+                            <constraint firstItem="U3u-u6-rhh" firstAttribute="top" secondItem="RtA-1g-HCy" secondAttribute="bottom" constant="5" id="iaK-XT-ENH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ArticleSources" id="BXO-9c-TM4"/>
+                    <connections>
+                        <outlet property="sourcesTableView" destination="RtA-1g-HCy" id="fgN-g8-vTA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EnB-eY-DqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632.79999999999995" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HQo-Kc-QVf">
@@ -40,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="gws-ZK-ECL" kind="relationship" relationship="rootViewController" id="d9T-p5-eWx"/>
+                        <segue destination="Wl4-Rh-Z0J" kind="relationship" relationship="rootViewController" id="FnH-y6-acT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydi-ha-VBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
