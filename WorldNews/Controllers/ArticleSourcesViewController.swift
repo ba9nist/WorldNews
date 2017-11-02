@@ -49,6 +49,7 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         refreshControl.addTarget(self, action: #selector(NewsTableViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching data...")
+        refreshControl.backgroundColor = UIColor.init(colorLiteralRed: 0.83, green: 0.83, blue: 0.83, alpha: 1.0)
         sourcesTableView.refreshControl = refreshControl
     }
     
