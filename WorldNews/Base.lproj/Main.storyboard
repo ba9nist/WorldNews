@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,6 +31,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhr-o4-Fh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1380" y="36"/>
+        </scene>
+        <!--Full Article View Controller-->
+        <scene sceneID="rNN-X2-ReD">
+            <objects>
+                <viewController storyboardIdentifier="FullArticleViewController" id="iZa-xM-ap6" customClass="FullArticleViewController" customModule="WorldNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lke-6p-1Qe"/>
+                        <viewControllerLayoutGuide type="bottom" id="vWk-Vr-bfj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MuZ-de-SyM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uHy-xO-mS2">
+                                <rect key="frame" x="16" y="20" width="343" height="2"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uHy-xO-mS2" firstAttribute="top" secondItem="lke-6p-1Qe" secondAttribute="bottom" id="8PY-MN-0yP"/>
+                            <constraint firstItem="uHy-xO-mS2" firstAttribute="trailing" secondItem="MuZ-de-SyM" secondAttribute="trailingMargin" id="RRW-Gk-XoX"/>
+                            <constraint firstItem="uHy-xO-mS2" firstAttribute="leading" secondItem="MuZ-de-SyM" secondAttribute="leadingMargin" id="XD5-6z-5cd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressBar" destination="uHy-xO-mS2" id="acp-wV-p4v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I81-vN-XVP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2237.5999999999999" y="35.532233883058474"/>
         </scene>
         <!--ArticleSources-->
         <scene sceneID="I7b-LW-cGD">
