@@ -17,16 +17,27 @@ class NewsTableViewController: UITableViewController {
     let reuseIdentifier = "NewsTableViewCell"
     
     
+    func createAlertView(msg: String){
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
     func loadArticles(){
         NewsApi.sharedInstance.getAricles(source: sourceToLoad) { (newArticles, error) in
             if(newArticles == nil){
+                self.newsTableView.refreshControl?.endRefreshing()
+                self.createAlertView(msg: error!.localizedDescription)
                 return
             }
             print("data arrives")
             self.articles = newArticles!
             self.newsTableView.refreshControl?.endRefreshing()
             self.newsTableView.reloadData()
-            
         };
     }
     

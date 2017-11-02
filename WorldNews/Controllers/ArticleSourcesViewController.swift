@@ -25,14 +25,31 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    func createAlertView(msg: String){
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+       
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
     func loadData(){
         checkPlaceholder()
         NewsApi.sharedInstance.getSources { (newSources, error) in
             if(newSources == nil){
-                print(error.debugDescription)
+                print(error!.localizedDescription)
+                self.sourcesTableView.refreshControl?.endRefreshing()
+                self.createAlertView(msg: error!.localizedDescription)
+                return;
             }
             self.sources = newSources!
             self.checkPlaceholder()
+//            UIView.transition(with: self.sourcesTableView,
+//                              duration: 0.5,
+//                              options: .transitionCrossDissolve,
+//                              animations: { self.sourcesTableView.reloadData() })
             self.sourcesTableView.reloadData()
             self.sourcesTableView.refreshControl?.endRefreshing()
         }
