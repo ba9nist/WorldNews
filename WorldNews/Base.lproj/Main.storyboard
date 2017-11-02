@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RtA-1g-HCy">
-                                <rect key="frame" x="5" y="2" width="365" height="662"/>
+                                <rect key="frame" x="0.0" y="2" width="375" height="662"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Wl4-Rh-Z0J" id="6Hh-tf-55C"/>
@@ -84,7 +84,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no data to show, please pull to refresh" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNn-cW-JY3">
-                                <rect key="frame" x="5" y="274" width="365" height="68.5"/>
+                                <rect key="frame" x="5" y="300" width="365" height="68.5"/>
                                 <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -93,12 +93,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UNn-cW-JY3" firstAttribute="leading" secondItem="bdN-iD-hqx" secondAttribute="leading" constant="5" id="8RB-Cl-YmE"/>
+                            <constraint firstItem="UNn-cW-JY3" firstAttribute="centerY" secondItem="RtA-1g-HCy" secondAttribute="centerY" id="9BQ-RR-CgE"/>
                             <constraint firstItem="RtA-1g-HCy" firstAttribute="top" secondItem="bdN-iD-hqx" secondAttribute="top" id="ByA-Vm-aDI"/>
                             <constraint firstAttribute="trailing" secondItem="UNn-cW-JY3" secondAttribute="trailing" constant="5" id="Gpv-dB-SZc"/>
-                            <constraint firstAttribute="trailing" secondItem="RtA-1g-HCy" secondAttribute="trailing" constant="5" id="VL6-kM-oTh"/>
-                            <constraint firstItem="RtA-1g-HCy" firstAttribute="leading" secondItem="bdN-iD-hqx" secondAttribute="leading" constant="5" id="WrU-1d-9Pl"/>
-                            <constraint firstItem="UNn-cW-JY3" firstAttribute="top" secondItem="J7P-A1-dRc" secondAttribute="bottom" constant="210" id="Yqk-Nz-5fI"/>
-                            <constraint firstItem="U3u-u6-rhh" firstAttribute="top" secondItem="RtA-1g-HCy" secondAttribute="bottom" constant="5" id="iaK-XT-ENH"/>
+                            <constraint firstAttribute="trailing" secondItem="RtA-1g-HCy" secondAttribute="trailing" id="VL6-kM-oTh"/>
+                            <constraint firstItem="RtA-1g-HCy" firstAttribute="leading" secondItem="bdN-iD-hqx" secondAttribute="leading" id="WrU-1d-9Pl"/>
+                            <constraint firstItem="U3u-u6-rhh" firstAttribute="top" secondItem="RtA-1g-HCy" secondAttribute="bottom" id="iaK-XT-ENH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ArticleSources" id="BXO-9c-TM4"/>
