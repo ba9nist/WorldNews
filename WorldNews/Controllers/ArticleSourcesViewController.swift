@@ -53,6 +53,14 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         sourcesTableView.refreshControl = refreshControl
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard let indexPath = sourcesTableView.indexPathForSelectedRow else{
+            print("no currently selected rows")
+            return
+        }
+        sourcesTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func refresh(_ refreshControl: UIRefreshControl) {
         sourcesTableView.refreshControl?.beginRefreshing()
         loadData()
@@ -78,16 +86,18 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         return 100
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
-        destination.sourceToLoad = sources[indexPath.row].source
-        navigationController?.pushViewController(destination, animated: true)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ArticleSourcesTableViewCell
         cell.setupData(sourceObject: sources[indexPath.row])
         return cell
+    }
+    
+    //MARK - tableView Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
+        destination.sourceToLoad = sources[indexPath.row].source
+        navigationController?.pushViewController(destination, animated: true)
     }
     
     
