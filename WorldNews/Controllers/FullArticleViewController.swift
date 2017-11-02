@@ -15,6 +15,7 @@ class FullArticleViewController: UIViewController, WKUIDelegate {
     @IBOutlet weak var progressBar: UIProgressView!
     
     var urlToLoad = ""
+    var author = ""
     
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +34,7 @@ class FullArticleViewController: UIViewController, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = author
         
         view.insertSubview(webView, belowSubview: progressBar)
         
