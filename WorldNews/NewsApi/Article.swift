@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 class Article: NSObject {
-    var author: String!
+    var author: String?
     var title: String!
     var about: String!
     var url: String!

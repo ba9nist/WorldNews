@@ -95,7 +95,9 @@ class NewsTableViewController: UITableViewController {
         //UIApplication.shared.open(URL(string: articles[indexPath.row].url!)!, options: [:], completionHandler:nil)
         let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "FullArticleViewController") as! FullArticleViewController
         destination.urlToLoad = articles[indexPath.row].url
-        destination.author = articles[indexPath.row].author
+        if(articles[indexPath.row].author != nil){
+            destination.author = articles[indexPath.row].author!
+        }
         navigationController?.pushViewController(destination, animated: true)
 
     }

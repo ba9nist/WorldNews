@@ -9,13 +9,26 @@
 import UIKit
 import WebKit
 
-class FullArticleViewController: UIViewController, WKUIDelegate {
+class FullArticleViewController: UIViewController, WKNavigationDelegate {
 
     var webView: WKWebView!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    var urlToLoad = ""
-    var author = ""
+    @IBOutlet weak var reloadDataButton: UIButton!
+    var request: URLRequest!
+    
+    private var _urlToLoad:String = ""
+    var urlToLoad: String{
+        get{
+            return self._urlToLoad
+        }
+        set{
+            self._urlToLoad = newValue
+            self.request = URLRequest(url: URL(string: _urlToLoad)!)
+        }
+    }
+    
+    var author = "No Title"
     
 
     required init?(coder aDecoder: NSCoder) {
@@ -23,7 +36,7 @@ class FullArticleViewController: UIViewController, WKUIDelegate {
         
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
+        webView.navigationDelegate = self
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
@@ -42,10 +55,6 @@ class FullArticleViewController: UIViewController, WKUIDelegate {
         let height = NSLayoutConstraint(item: webView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: webView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
         view.addConstraints([height, width])
-        
-        
-        let url = URL(string: urlToLoad)
-        let request = URLRequest(url: url!)
                webView.load(request)
     }
 
@@ -63,6 +72,39 @@ class FullArticleViewController: UIViewController, WKUIDelegate {
             }
             progressBar.progress = Float(webView.estimatedProgress)
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        
+        if(webView.url == nil){
+            reloadDataButton.isHidden = false
+            
+        }
+        
+        createAlertView(msg: error.localizedDescription)
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        if(webView.url == nil){
+            reloadDataButton.isHidden = false
+
+        }
+        createAlertView(msg: error.localizedDescription)
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        reloadDataButton.isHidden = true
+    }
+    
+    func createAlertView(msg: String){
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func reloadData(_ sender: UIButton) {
+        webView.load(self.request)
     }
 
 }

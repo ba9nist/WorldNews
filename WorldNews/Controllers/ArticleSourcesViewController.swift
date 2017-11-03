@@ -89,7 +89,7 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: - dataSource
+    //MARK: - tableView dataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -109,15 +109,13 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    //MARK - tableView Delegate
+    //MARK: - tableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
         destination.sourceToLoad = sources[indexPath.row].source
         navigationController?.pushViewController(destination, animated: true)
     }
-    
-    
     
     /*
     // MARK: - Navigation
