@@ -50,7 +50,7 @@ class NewsApi: NSObject {
     
     
     
-    func getAricles(source: String?, completion: @escaping ([Article]?, Error?) -> ()){
+    func getAricles(source: String?, completion: @escaping ([Article]?, String?, Error?) -> ()){
         var url: String = "https://newsapi.org/v1/articles?";
         if (source == nil){
 //            let url = "https://newsapi.org/v1/articles?source=techcrunch&apiKey=37543c1f01b7455ba38401d4bfcd6688"
@@ -62,7 +62,7 @@ class NewsApi: NSObject {
         Alamofire.request(url).validate()
         .responseJSON { (response) in
             guard response.result.isSuccess else{
-                completion(nil, response.result.error)
+                completion(nil, nil, response.result.error)
                 return
             }
             
@@ -72,7 +72,7 @@ class NewsApi: NSObject {
             for article in (jsonResult["articles"].array)!{
                 articles.append(Article(json: article))
             }
-            completion(articles,nil)
+            completion(articles,jsonResult["source"].string,nil)
         }
     }
     

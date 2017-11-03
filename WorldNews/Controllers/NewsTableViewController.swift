@@ -13,6 +13,7 @@ class NewsTableViewController: UITableViewController {
     @IBOutlet weak var newsTableView: UITableView!
     
     var sourceToLoad: String = ""
+    var sourceName: String = ""
     var articles:[Article] = []
     let reuseIdentifier = "NewsTableViewCell"
     
@@ -28,14 +29,14 @@ class NewsTableViewController: UITableViewController {
     }
     
     func loadArticles(){
-        NewsApi.sharedInstance.getAricles(source: sourceToLoad) { (newArticles, error) in
+        NewsApi.sharedInstance.getAricles(source: sourceToLoad) { (newArticles, sourceName, error) in
             if(newArticles == nil){
                 self.newsTableView.refreshControl?.endRefreshing()
                 self.createAlertView(msg: error!.localizedDescription)
                 return
             }
-            print("data arrives")
             self.articles = newArticles!
+            self.sourceName = (sourceName == nil) ? String("No Title") : sourceName!
             self.newsTableView.refreshControl?.endRefreshing()
             self.newsTableView.reloadData()
         };
@@ -95,9 +96,7 @@ class NewsTableViewController: UITableViewController {
         //UIApplication.shared.open(URL(string: articles[indexPath.row].url!)!, options: [:], completionHandler:nil)
         let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "FullArticleViewController") as! FullArticleViewController
         destination.urlToLoad = articles[indexPath.row].url
-        if(articles[indexPath.row].author != nil){
-            destination.author = articles[indexPath.row].author!
-        }
+        destination.author = sourceName
         navigationController?.pushViewController(destination, animated: true)
 
     }
