@@ -21,16 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
 //        let navigationViewController = storyboard.instantiateViewController(withIdentifier: "NavigationController")
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ArticleSourcesViewController") as! ArticleSourcesViewController
+//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ArticleSourcesViewController") as! ArticleSourcesViewController
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "ArticleSourcesCollectionViewController") as! ArticleSourcesCollectionViewController
         let leftViewController = storyboard.instantiateViewController(withIdentifier: "LeftMenuViewController") as! LeftMenuViewController
         
         let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
         leftViewController.mainViewController = mainViewController
-        UINavigationBar.appearance().tintColor = UIColor.brown
+        //UINavigationBar.appearance().tintColor = UIColor.brown
         
         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
         slideMenuController.automaticallyAdjustsScrollViewInsets = true
-        slideMenuController.delegate = mainViewController
+        //slideMenuController.delegate = mainViewController
         self.window?.backgroundColor = UIColor(red: 236.0/255, green: 238.0/255, blue: 241.0/255, alpha: 1.0)
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()

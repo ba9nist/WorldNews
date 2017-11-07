@@ -67,6 +67,13 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu_black_24dp")!)
+        self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        self.slideMenuController()?.addLeftGestures()
+        self.slideMenuController()?.addRightGestures()
+        
         // Do any additional setup after loading the view.
         sourcesTableView.register(UINib(nibName: "ArticleSourcesTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         sourcesTableView.tableFooterView = UIView()

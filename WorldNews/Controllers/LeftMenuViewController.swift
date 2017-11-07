@@ -22,8 +22,8 @@ struct Category{
 }
 class LeftMenuViewController: UIViewController, LeftMenuProtocol1{
      @IBOutlet weak var tableView: UITableView!
-    var mainViewController: ArticleSourcesViewController! = nil
-    
+//    var mainViewController: ArticleSourcesViewController! = nil
+    var mainViewController: ArticleSourcesCollectionViewController! = nil
     
     let categories = [Category(name: "business", image: #imageLiteral(resourceName: "business")),
                       Category(name: "entertainment", image: #imageLiteral(resourceName: "entertainment")),
@@ -97,7 +97,6 @@ extension LeftMenuViewController : UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected row = \(indexPath.row)")
         mainViewController.sourceToLoad = categories[indexPath.row].name
         //mainViewController.loadData()
         self.slideMenuController()?.closeLeft()

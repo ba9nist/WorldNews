@@ -74,17 +74,8 @@ class FullArticleViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        
-        if(webView.url == nil){
-            reloadDataButton.isHidden = false
-            
-        }
-        
-        createAlertView(msg: error.localizedDescription)
-    }
-    
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print("didFailProvisional")
         if(webView.url == nil){
             reloadDataButton.isHidden = false
 

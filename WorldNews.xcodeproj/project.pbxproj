@@ -22,6 +22,9 @@
 		9FF08DC01FB0B2500083CB9B /* ExSlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF08DBF1FB0B2500083CB9B /* ExSlideMenuViewController.swift */; };
 		9FF08DEB1FB1918F0083CB9B /* LeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF08DE91FB1918F0083CB9B /* LeftMenuTableViewCell.swift */; };
 		9FF08DEC1FB1918F0083CB9B /* LeftMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF08DEA1FB1918F0083CB9B /* LeftMenuTableViewCell.xib */; };
+		9FF08DEE1FB1AD350083CB9B /* ArticleSourcesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF08DED1FB1AD350083CB9B /* ArticleSourcesCollectionViewController.swift */; };
+		9FF08DF11FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF08DEF1FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.swift */; };
+		9FF08DF21FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF08DF01FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.xib */; };
 		9FF644F01FA9DBB000426E35 /* ArticleSourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF644EF1FA9DBB000426E35 /* ArticleSourcesViewController.swift */; };
 		9FF644F31FA9DC1A00426E35 /* ArticleSourcesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF644F11FA9DC1A00426E35 /* ArticleSourcesTableViewCell.swift */; };
 		9FF644F41FA9DC1A00426E35 /* ArticleSourcesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF644F21FA9DC1A00426E35 /* ArticleSourcesTableViewCell.xib */; };
@@ -48,6 +51,9 @@
 		9FF08DBF1FB0B2500083CB9B /* ExSlideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExSlideMenuViewController.swift; sourceTree = "<group>"; };
 		9FF08DE91FB1918F0083CB9B /* LeftMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		9FF08DEA1FB1918F0083CB9B /* LeftMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuTableViewCell.xib; sourceTree = "<group>"; };
+		9FF08DED1FB1AD350083CB9B /* ArticleSourcesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSourcesCollectionViewController.swift; sourceTree = "<group>"; };
+		9FF08DEF1FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSourcesCollectionViewCell.swift; sourceTree = "<group>"; };
+		9FF08DF01FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleSourcesCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FF644EF1FA9DBB000426E35 /* ArticleSourcesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSourcesViewController.swift; sourceTree = "<group>"; };
 		9FF644F11FA9DC1A00426E35 /* ArticleSourcesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleSourcesTableViewCell.swift; path = ../Controllers/ArticleSourcesTableViewCell.swift; sourceTree = "<group>"; };
 		9FF644F21FA9DC1A00426E35 /* ArticleSourcesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleSourcesTableViewCell.xib; path = ../Controllers/ArticleSourcesTableViewCell.xib; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 				9FF08DB31FAB590A0083CB9B /* FullArticleViewController.swift */,
 				9FF08DB51FB09DA90083CB9B /* LeftMenuViewController.swift */,
 				9FF08DBF1FB0B2500083CB9B /* ExSlideMenuViewController.swift */,
+				9FF08DED1FB1AD350083CB9B /* ArticleSourcesCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -147,6 +154,8 @@
 				9FF644F21FA9DC1A00426E35 /* ArticleSourcesTableViewCell.xib */,
 				9FF08DE91FB1918F0083CB9B /* LeftMenuTableViewCell.swift */,
 				9FF08DEA1FB1918F0083CB9B /* LeftMenuTableViewCell.xib */,
+				9FF08DEF1FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.swift */,
+				9FF08DF01FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.xib */,
 			);
 			name = View;
 			path = WorldNews/View;
@@ -222,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF08DF21FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.xib in Resources */,
 				9FB75AC01FA891BC00F1793E /* LaunchScreen.storyboard in Resources */,
 				9FF08DEC1FB1918F0083CB9B /* LeftMenuTableViewCell.xib in Resources */,
 				9FB75ABD1FA891BC00F1793E /* Assets.xcassets in Resources */,
@@ -286,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF08DF11FB1AE220083CB9B /* ArticleSourcesCollectionViewCell.swift in Sources */,
 				9FB75AD81FA8BE5B00F1793E /* Article.swift in Sources */,
 				9FF644F31FA9DC1A00426E35 /* ArticleSourcesTableViewCell.swift in Sources */,
 				9FB75AB61FA891BC00F1793E /* AppDelegate.swift in Sources */,
@@ -294,6 +305,7 @@
 				9FF08DEB1FB1918F0083CB9B /* LeftMenuTableViewCell.swift in Sources */,
 				9FF644F01FA9DBB000426E35 /* ArticleSourcesViewController.swift in Sources */,
 				9FF08DB41FAB590A0083CB9B /* FullArticleViewController.swift in Sources */,
+				9FF08DEE1FB1AD350083CB9B /* ArticleSourcesCollectionViewController.swift in Sources */,
 				9FB75ACD1FA8933900F1793E /* NewsTableViewController.swift in Sources */,
 				9FB75AD41FA899A400F1793E /* NewsApi.swift in Sources */,
 				9FF08DC01FB0B2500083CB9B /* ExSlideMenuViewController.swift in Sources */,

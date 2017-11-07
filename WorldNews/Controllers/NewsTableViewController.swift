@@ -94,7 +94,8 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //UIApplication.shared.open(URL(string: articles[indexPath.row].url!)!, options: [:], completionHandler:nil)
-        let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "FullArticleViewController") as! FullArticleViewController
+//        let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "FullArticleViewController") as! FullArticleViewController
+        let destination = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FullArticleViewController") as! FullArticleViewController
         destination.urlToLoad = articles[indexPath.row].url
         destination.author = sourceName
         navigationController?.pushViewController(destination, animated: true)
