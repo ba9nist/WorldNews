@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
-class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var sourcesTableView: UITableView!
     
     @IBOutlet weak var placeholder: UILabel!
     let reuseIdentifier = "ArticleSourcesTableViewCell"
+    
+    var sourceToLoad: String?{
+        didSet{
+            print("didset")
+            self.loadData()
+
+        }
+    }
     
     var sources: [SourceObject] = []
     
@@ -37,7 +46,7 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
     
     func loadData(){
         checkPlaceholder()
-        NewsApi.sharedInstance.getSources { (newSources, error) in
+        NewsApi.sharedInstance.getSources(type: sourceToLoad) {(newSources, error) in
             if(newSources == nil){
                 print(error!.localizedDescription)
                 self.sourcesTableView.refreshControl?.endRefreshing()
@@ -81,7 +90,6 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
     func refresh(_ refreshControl: UIRefreshControl) {
         sourcesTableView.refreshControl?.beginRefreshing()
         loadData()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,19 +120,46 @@ class ArticleSourcesViewController: UIViewController, UITableViewDataSource, UIT
     //MARK: - tableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
+//        let destination = navigationController?.storyboard?.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destination = storyboard.instantiateViewController(withIdentifier: "NewsTableViewController") as! NewsTableViewController
         destination.sourceToLoad = sources[indexPath.row].source
-        navigationController?.pushViewController(destination, animated: true)
+        self.navigationController?.pushViewController(destination, animated: true)
     }
     
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension ArticleSourcesViewController : SlideMenuControllerDelegate {
+    
+    func leftWillOpen() {
+        print("SlideMenuControllerDelegate: leftWillOpen")
     }
-    */
-
+    
+    func leftDidOpen() {
+        print("SlideMenuControllerDelegate: leftDidOpen")
+    }
+    
+    func leftWillClose() {
+        print("SlideMenuControllerDelegate: leftWillClose")
+    }
+    
+    func leftDidClose() {
+        print("SlideMenuControllerDelegate: leftDidClose")
+    }
+    
+    func rightWillOpen() {
+        print("SlideMenuControllerDelegate: rightWillOpen")
+    }
+    
+    func rightDidOpen() {
+        print("SlideMenuControllerDelegate: rightDidOpen")
+    }
+    
+    func rightWillClose() {
+        print("SlideMenuControllerDelegate: rightWillClose")
+    }
+    
+    func rightDidClose() {
+        print("SlideMenuControllerDelegate: rightDidClose")
+    }
 }

@@ -2,18 +2,21 @@ PODS:
   - Alamofire (4.2.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
+  - SlideMenuControllerSwift (4.0.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.2.0)
   - AlamofireImage (~> 3.0)
+  - SlideMenuControllerSwift
   - SwiftyJSON (~> 3.1.1)
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 74b4fbda6fc80c0d29179f5cffa30d4577574851
+PODFILE CHECKSUM: 692c2d323f5ff2a1d9d5e76ae374b68d9cce8cd4
 
 COCOAPODS: 1.1.1

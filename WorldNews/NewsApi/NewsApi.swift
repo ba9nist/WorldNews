@@ -76,9 +76,12 @@ class NewsApi: NSObject {
         }
     }
     
-    func getSources(completion: @escaping ([SourceObject]?, Error?)->()){
-        print("getting all sources");
-        let url = "https://newsapi.org/v1/sources"
+    func getSources(type: String?, completion: @escaping ([SourceObject]?, Error?)->()){
+        var url = "https://newsapi.org/v1/sources"
+        if(type != nil){
+            url += "?category=\(type!)"
+        }
+        print(url)
         Alamofire.request(
             url,
             method: .get,
