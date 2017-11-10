@@ -17,6 +17,9 @@ class ArticleSourcesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 6
+
     }
     
     func setupData(sourceObject: SourceObject){
